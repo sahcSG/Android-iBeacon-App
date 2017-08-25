@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">@color/purple_light</color>
+    <color name="colorPrimaryDark">@color/purple</color>
+    <color name="colorAccent">@color/gray_green</color>
+
+    <!--  颜色搭配： 椰林晚景 -->
+    <color name="purple_dark">#634f6e</color>
+    <color name="purple">#ac69ce</color>
+    <color name="purple_light">#c3a1d4</color>
+    <color name="gray_green">#ebf2d0</color>
+    <color name="gray_green_dark">#d0d1bc</color>
+
 </resources>
