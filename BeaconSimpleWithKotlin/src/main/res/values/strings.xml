@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">ibeacon</string>
+    <string name="app_name">ibeacon test</string>
+    <string name="ibeacon">iBeacon</string>
+    <string name="forward">敬请期待</string>
 </resources>

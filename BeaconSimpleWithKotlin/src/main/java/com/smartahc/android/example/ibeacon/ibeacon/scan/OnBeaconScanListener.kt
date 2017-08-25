@@ -14,6 +14,12 @@ interface OnBeaconScanListener {
      */
     fun OnScanResult(beacon: Beacon)
 
+
+    /**
+     * 扫描时，消息回调
+     */
+    fun onScanErrorMsg(msg: String)
+
     /**
      * 过滤条件
      */
