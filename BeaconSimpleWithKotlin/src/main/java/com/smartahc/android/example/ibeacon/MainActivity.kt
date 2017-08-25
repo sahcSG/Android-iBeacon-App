@@ -3,10 +3,10 @@ package com.smartahc.android.example.ibeacon
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.Toolbar
 import android.view.View
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
-import android.view.animation.ScaleAnimation
 
 /**
  * 蓝牙是否打开，定位是否打开
@@ -20,6 +20,9 @@ class MainActivity : AppCompatActivity() {
         findViewById(R.id.ibeacon).setOnClickListener { view ->
             startAnimation(view, IBeaconActivity::class.java)
         }
+        val toolbar = findViewById(R.id.toolbar) as Toolbar
+        toolbar.title = getString(R.string.main_title)
+        setSupportActionBar(toolbar)
     }
 
 

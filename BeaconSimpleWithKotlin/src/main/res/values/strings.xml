@@ -2,4 +2,6 @@
     <string name="app_name">ibeacon test</string>
     <string name="ibeacon">iBeacon</string>
     <string name="forward">敬请期待</string>
+    <string name="main_title">iBeacon test Main</string>
+    <string name="ibeacon_title">ibeacon scan list</string>
 </resources>

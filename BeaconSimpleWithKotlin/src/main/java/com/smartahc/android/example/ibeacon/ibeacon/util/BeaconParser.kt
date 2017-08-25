@@ -3,6 +3,7 @@ package com.smartahc.android.example.ibeacon.ibeacon.util
 import android.bluetooth.BluetoothDevice
 import android.util.Log
 import com.smartahc.android.example.ibeacon.ibeacon.bean.Beacon
+import java.util.*
 import kotlin.experimental.and
 
 /**
@@ -33,7 +34,7 @@ class BeaconParser {
             }
             // parse data
             if (data.isNotEmpty()) {
-                parseData(beacon, data)
+                return parseData(beacon, data)
             } else {
                 Log.e(TAG, "data >> is null")
             }
@@ -43,7 +44,7 @@ class BeaconParser {
         /**
          * 解析 beacon 数据
          */
-        private fun parseData(beacon: Beacon, scanData: ByteArray) {
+        private fun parseData(beacon: Beacon, scanData: ByteArray): Beacon {
             Log.e("beacon", "name >> ${beacon.name}")
             var startByte = 2
             while (startByte <= 5) {
@@ -60,13 +61,14 @@ class BeaconParser {
             }
             val uuidBytes = ByteArray(16)
             System.arraycopy(scanData, startByte + 4, uuidBytes, 0, 16)
-            parseUUID(beacon, uuidBytes)
+            beacon.uuid = parseUUID(uuidBytes)
+            return beacon
         }
 
         /**
          * 解析 uuid 数据
          */
-        private fun parseUUID(beacon: Beacon, uuidBytes: ByteArray) {
+        private fun parseUUID(uuidBytes: ByteArray): String {
             val hexString = bytesToHexString(uuidBytes)
             Log.v(TAG, hexString)
             val sb = StringBuilder()
@@ -81,10 +83,10 @@ class BeaconParser {
                     sb.append(it.substring(16, 20))
                     sb.append("-")
                     sb.append(it.substring(20, 32))
-                    beacon.uuid = sb.toString()
                 }
-                Log.v(TAG, beacon.uuid)
+                Log.v(TAG, sb.toString())
             }
+            return sb.toString()
         }
 
         /**
@@ -95,9 +97,10 @@ class BeaconParser {
             if (src == null || src.isEmpty()) {
                 return stringBuilder.toString()
             }
+            Log.v("byte >> ", Arrays.toString(src))
             for (aSrc in src) {
-                val v = aSrc and 0xFF.toByte()
-                val hv = Integer.toHexString(v.toInt())
+                val v: Int = (aSrc and 0xFF.toByte()).toInt()
+                val hv = Integer.toHexString(v)
                 if (hv.length < 2) {
                     stringBuilder.append(0)
                 }
